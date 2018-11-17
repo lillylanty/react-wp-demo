@@ -99,4 +99,25 @@ render(
     "react-hot-loader/babel"]
 }
 ```
+### 2.5 添加对es7语法的支持
+npm install babel-preset-stage-1 --save　　
+ 最后修改.babelrc即可。
+
+......
+"react",
+"stage-1"
+......
+### 2.6  其他常用加载器
+
+　　　　css-loader: 解析css代码
+
+　　　　style-laoder: 将编译后css样式导入到html中
+
+　　　　less-loader: 加载和转移less文件
+
+　　　　raw-loader: 加载文件原始内容（utf-8格式）
+
+　　　　url-loader: 多用于加载图片
+
+　　　　file-loader: 打包文件
 
