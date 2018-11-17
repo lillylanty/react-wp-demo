@@ -8,7 +8,9 @@ const renderDom = Component => {
     )
 }
 renderDom(App)
-// render (
-//     <div>hello, the first step from webpack bundle,auto bundle to dist/bundle.js</div>,
-//     document.getElementById('app')
-// )
+if(module.hot){
+    module.hot.accept('./App',() => {
+        const App = require('./App').default;
+        renderDom(App);
+    })
+}

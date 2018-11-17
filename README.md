@@ -24,4 +24,44 @@
 ```npm install html-webpack-plugin --save-dev ```
 　　在src目录新建index.template.html。
 编辑webpack.config.js。最后重新启动服务即可。若是想看打包后的文件可以打开chorme，在Sources即可看见。或者使用webpack --config webpack/webpack.config.js进行构建，在项目目录的dist目录查看
+### 2.3 devtool
+在开发的过程，我们会经常调试，so，为了方便我们在chrome中调试源代码，需要更改webpack.config.js，然后启动webpack-dev-server。完成之后在chrome浏览器中打开debug，点击Sources选项，即可看见提示，继而输入你想查看的源文件名即可显示该文件源代码，如果你觉得某处代码有问题，对应行号打上断点即可调试。
+``` module.exports = {
+    devtool: 'cheap-module-eval-source-map',
+    ......
+ } 
+```
+### 2.4 HMR
+它在代码修改后重新打包并发送到浏览器，浏览器将获取的新模块替换老模块，在不刷新浏览器的情况下实现对应用的更新。由于我们使用的是webpack-dev-server，它提供了两种自动刷新方式供我们选择，iframe和inline模式。这里我们选择inline模式，更改dev-server.js。 
+``` const server = new WebpackDevServer(compiler, {
+    contentBase: path.resolve(__dirname, '../build'), // 默认会以根文件夹提供本地服务器，这里指定文件夹
+    inline: true, // 自动刷新
+    hot: true, 
+```
+更改webpack.config.js
+``` const webpack = require('webpack');
+module.exports = {
+    devtool: 'cheap-module-eval-source-map',
+    entry: [
+　　　　　'webpack-dev-server/client?http://localhost:9090',
+        'webpack/hot/only-dev-server',
+        path.resolve(__dirname, '../src/index.js')
+    ],
+　　 ......
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+　　　　 ......
+    ]
+```
+最后更改index.js
+``` 
+renderDom(App);
+
+if (module.hot) {
+    module.hot.accept('./App', () => {
+        const App = require('./App').default;
+        renderDom(App);
+    })
+} 
+```
 
