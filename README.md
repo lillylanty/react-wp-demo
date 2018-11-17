@@ -64,4 +64,39 @@ if (module.hot) {
     })
 } 
 ```
+然后在浏览器中点击按钮，页面中数值随之增加。然后，我们修改一下App.js（在button标签下增加其他标签），保存后浏览器自动刷新。我们查看一下浏览器，那么问题来了，刚刚点击增加后的数值不见了，又回到了初始值1。这时候发现组件的状态并没有保存下来，没有达到真正意义上的React热更新。所以这里还需要引入一个插件，来帮我们解决热更新组件状态保存问题。这也是react-hot-loader的由来。
+``` 
+npm install react-hot-loader --save-dev
+npm install babel-polyfill --save
+```
+ 更改webpack.config.js。
+ ``` entry: [
+        'babel-polyfill',
+        'react-hot-loader/patch',
+        ...
+  ```
+  更改index.js。
+  ```  
+  import { AppContainer } from 'react-hot-loader';
+import 'babel-polyfill';
+render(
+        <AppContainer>
+            <Component />
+        </AppContainer>,
+  ```
+   更改.babelrc。
+   ``` {
+  "presets": [
+    [
+      "es2015",
+      {
+        "module": false
+      }
+    ],
+    "react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel"]
+}
+```
 
