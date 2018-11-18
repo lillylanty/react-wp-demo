@@ -21,7 +21,29 @@ module.exports = {
                 test: /\.(js)$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.css$/,
+                use:[{
+                    loader: 'style-loader',
+                },
+                {
+                    loader:'css-loader?modules&locaIndentName=[name]-[hash:base64:5]'
+                }]
+            },
+            // {
+            //     test:/\.less$/,
+            //     use:[{
+            //         loader:'style-loader',
+            //     },{
+            //         loader:'css-loader',
+            //     },{
+            //         loader:'less-loader',
+            //         options:{
+            //             sourceMap: true
+            //         }
+            //     }]
+            // }
         ]
     },
     plugins: [
