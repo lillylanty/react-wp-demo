@@ -32,25 +32,25 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif)$/,/*  */
                 use: [{
                     loader: 'file-loader',
                     options:{}
                 }]
             },
-            // {
-            //     test:/\.less$/,
-            //     use:[{
-            //         loader:'style-loader',
-            //     },{
-            //         loader:'css-loader',
-            //     },{
-            //         loader:'less-loader',
-            //         options:{
-            //             sourceMap: true
-            //         }
-            //     }]
-            // }
+            {
+                test:/\.less$/,
+                use:[{
+                    loader:'style-loader',
+                },{
+                    loader:'css-loader?modules&locaIndentName=[name]-[hash:base64:5]',
+                },{
+                    loader:'less-loader',
+                    options:{
+                        sourceMap: true
+                    }
+                }]
+            }
         ]
     },
     plugins: [

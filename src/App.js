@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import style from './app.css' ;
 import TestCss from "./TestCss";
+import TestLess from "./TestLess";
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -21,9 +22,8 @@ export default class App extends Component {
    }
 
     render(){
-       console.log(this.state.count);
-        
-        return <div className={style.pink}>
+        return <div className={style.pink2}>
+            <TestLess />
             这是APP组件了第6次，
            测试图片加载
            <TestCss />
