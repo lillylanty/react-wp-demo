@@ -31,6 +31,13 @@ module.exports = {
                     loader:'css-loader?modules&locaIndentName=[name]-[hash:base64:5]'
                 }]
             },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options:{}
+                }]
+            },
             // {
             //     test:/\.less$/,
             //     use:[{
