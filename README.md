@@ -121,3 +121,6 @@ npm install babel-preset-stage-1 --save　　
 
 　　　　file-loader: 打包文件
 
+### 3.0 分离不同环境公有配置
+安装webpack-merge(用于合并配置)、uglifyjs-webpack-plugin(js代码压缩，这里单独提取出来控制版本)和rimraf(跨平台删除工具)。
+
