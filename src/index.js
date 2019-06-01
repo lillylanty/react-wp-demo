@@ -1,7 +1,20 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-
-render (
-    <div>hello, the first step from webpack bundle,auto bundle to dist/bundle.js</div>,
-    document.getElementById('app')
-)
+import {AppContainer} from 'react-hot-loader';
+import 'babel-polyfill';
+import App from './App';
+const renderDom = Component => {
+    render (
+        <AppContainer>
+            <Component />
+        </AppContainer>,
+        document.getElementById('app')
+    )
+}
+renderDom(App)
+if(module.hot){
+    module.hot.accept('./App',() => {
+        const App = require('./App').default;
+        renderDom(App);
+    })
+}
