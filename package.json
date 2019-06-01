@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack NODE_ENV='admin' --config webpack/webpack.config.js",
     "start": "webpack --config webpack/webpack.config.js",
     "test": "npm run test"
   },
